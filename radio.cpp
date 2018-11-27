@@ -278,6 +278,9 @@ printf("Usage: %s [OPTION...]\n"
 "\t    --rds\t\tEnable RDS transmission\n\n"
 "\t    --no-rds\t\tDisable RDS transmission\n\n"
 "\t-d, --rds-deviation\tSet the RDS deviation\n\n"
+"\t    --rds-mix\tSet the rds PS Rotation Mix\n\n"
+"\t    --rds-repeat\tSet the rds PS repeat count\n\n"
+"\t    --rds-ps\tSet the rds PS string\n\n"
 "\t    --reset\t\tAttempt to reset the frontend\n\n"
 "\t-v, --verbose\t\tTurn up logging level.  Can be specified more than once for more logging\n\n"
 "\t-h, --help\t\tDisplay this help\n"
@@ -312,7 +315,6 @@ int main(int argc, char *argv[])
 			{"no-transmit",			no_argument,		0, 'n'},
 			{"tune-frequency",		required_argument,	0, 'f'},
 			{"rds-station",			required_argument,	0, 's'},
-			{"rds-pi",			required_argument,	0, 'I'},
 			{"rds-text",			required_argument,	0, 'R'},
 			{"title",				required_argument,	0, 'T'},
 			{"artist",				required_argument,	0, 'A'},
@@ -336,6 +338,7 @@ int main(int argc, char *argv[])
 			{"help",				no_argument,		0, 'h'},
 			{"rds-repeat",			required_argument,	0,	7},
 			{"rds-mix",			required_argument,	0,	8},
+			{"rds-pi",			required_argument,	0,	9},
 			{0,						0,					0,  0 }
 		};
 
@@ -385,7 +388,7 @@ int main(int argc, char *argv[])
 				psm.mRdsMix = atoi(optarg);
 				break;
 			}
-			case 'I': // rds-ps
+			case 9: // rds-ps
 			{
 				VastPsMessage& psm = VastPsMessage::get();
 				std::string psmessage = optarg;
