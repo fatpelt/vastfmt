@@ -37,6 +37,8 @@ int impedance = -1;
 
 uint16_t parseInt(const char *PI)
 {
+	return (uint16_t)strtol(PI, NULL, 16);
+
 	uint16_t pi_val = 0;
 
 	sscanf(PI, "%x%x", &pi_val, (&pi_val+1));
@@ -72,149 +74,149 @@ uint16_t call_to_pi(char *call)
 	else if ( strlen(call) == 3 )
 	{
 		if ( strcmp("KBW", call) == 0 )
-			picode = parseInt("99A5");
-		if ( strcmp("KCY", call) == 0 )
-			picode = parseInt("99A6");
-		if ( strcmp("KDB", call) == 0 )
-			picode = parseInt("9990");
-		if ( strcmp("KDF", call) == 0 )
-			picode = parseInt("99A7");
-		if ( strcmp("KEX", call) == 0 )
-			picode = parseInt("9950");
-		if ( strcmp("KFH", call) == 0 )
-			picode = parseInt("9951");
-		if ( strcmp("KFI", call) == 0 )
-			picode = parseInt("9952");
-		if ( strcmp("KGA", call) == 0 )
-			picode = parseInt("9953");
-		if ( strcmp("KGB", call) == 0 )
-			picode = parseInt("9991");
-		if ( strcmp("KGO", call) == 0 )
-			picode = parseInt("9954");
-		if ( strcmp("KGU", call) == 0 )
-			picode = parseInt("9955");
-		if ( strcmp("KGW", call) == 0 )
-			picode = parseInt("9956");
-		if ( strcmp("KGY", call) == 0 )
-			picode = parseInt("9957");
-		if ( strcmp("KHQ", call) == 0 )
-			picode = parseInt("99AA");
-		if ( strcmp("KID", call) == 0 )
-			picode = parseInt("9958");
-		if ( strcmp("KIT", call) == 0 )
-			picode = parseInt("9959");
-		if ( strcmp("KJR", call) == 0 )
-			picode = parseInt("995A");
-		if ( strcmp("KLO", call) == 0 )
-			picode = parseInt("995B");
-		if ( strcmp("KLZ", call) == 0 )
-			picode = parseInt("995C");
-		if ( strcmp("KMA", call) == 0 )
-			picode = parseInt("995D");
-		if ( strcmp("KMJ", call) == 0 )
-			picode = parseInt("995E");
-		if ( strcmp("KNX", call) == 0 )
-			picode = parseInt("995F");
-		if ( strcmp("KOA", call) == 0 )
-			picode = parseInt("9960");
-		if ( strcmp("KOB", call) == 0 )
-			picode = parseInt("99AB");
-		if ( strcmp("KOY", call) == 0 )
-			picode = parseInt("9992");
-		if ( strcmp("KPQ", call) == 0 )
-			picode = parseInt("9993");
-		if ( strcmp("KQV", call) == 0 )
-			picode = parseInt("9964");
-		if ( strcmp("KSD", call) == 0 )
-			picode = parseInt("9994");
-		if ( strcmp("KSL", call) == 0 )
-			picode = parseInt("9965");
-		if ( strcmp("KUJ", call) == 0 )
-			picode = parseInt("9966");
-		if ( strcmp("KUT", call) == 0 )
-			picode = parseInt("9995");
-		if ( strcmp("KVI", call) == 0 )
-			picode = parseInt("9967");
-		if ( strcmp("KWG", call) == 0 )
-			picode = parseInt("9968");
-		if ( strcmp("KXL", call) == 0 )
-			picode = parseInt("9996");
-		if ( strcmp("KXO", call) == 0 )
-			picode = parseInt("9997");
-		if ( strcmp("KYW", call) == 0 )
-			picode = parseInt("996B");
-		if ( strcmp("WBT", call) == 0 )
-			picode = parseInt("9999");
-		if ( strcmp("WBZ", call) == 0 )
-			picode = parseInt("996D");
-		if ( strcmp("WDZ", call) == 0 )
-			picode = parseInt("996E");
-		if ( strcmp("WEW", call) == 0 )
-			picode = parseInt("996F");
-		if ( strcmp("WGH", call) == 0 )
-			picode = parseInt("999A");
-		if ( strcmp("WGL", call) == 0 )
-			picode = parseInt("9971");
-		if ( strcmp("WGN", call) == 0 )
-			picode = parseInt("9972");
-		if ( strcmp("WGR", call) == 0 )
-			picode = parseInt("9973");
-		if ( strcmp("WGY", call) == 0 )
-			picode = parseInt("999B");
-		if ( strcmp("WHA", call) == 0 )
-			picode = parseInt("9975");
-		if ( strcmp("WHB", call) == 0 )
-			picode = parseInt("9976");
-		if ( strcmp("WHK", call) == 0 )
-			picode = parseInt("9977");
-		if ( strcmp("WHO", call) == 0 )
-			picode = parseInt("9978");
-		if ( strcmp("WHP", call) == 0 )
-			picode = parseInt("999C");
-		if ( strcmp("WIL", call) == 0 )
-			picode = parseInt("999D");
-		if ( strcmp("WIP", call) == 0 )
-			picode = parseInt("997A");
-		if ( strcmp("WIS", call) == 0 )
-			picode = parseInt("99B3");
-		if ( strcmp("WJR", call) == 0 )
-			picode = parseInt("997B");
-		if ( strcmp("WJW", call) == 0 )
-			picode = parseInt("99B4");
-		if ( strcmp("WJZ", call) == 0 )
-			picode = parseInt("99B5");
-		if ( strcmp("WKY", call) == 0 )
-			picode = parseInt("997C");
-		if ( strcmp("WLS", call) == 0 )
-			picode = parseInt("997D");
-		if ( strcmp("WLW", call) == 0 )
-			picode = parseInt("997E");
-		if ( strcmp("WMC", call) == 0 )
-			picode = parseInt("999E");
-		if ( strcmp("WMT", call) == 0 )
-			picode = parseInt("999F");
-		if ( strcmp("WOC", call) == 0 )
-			picode = parseInt("9981");
-		if ( strcmp("WOI", call) == 0 )
-			picode = parseInt("99A0");
-		if ( strcmp("WOL", call) == 0 )
-			picode = parseInt("9983");
-		if ( strcmp("WOR", call) == 0 )
-			picode = parseInt("9984");
-		if ( strcmp("WOW", call) == 0 )
-			picode = parseInt("99A1");
-		if ( strcmp("WRC", call) == 0 )
-			picode = parseInt("99B9");
-		if ( strcmp("WRR", call) == 0 )
-			picode = parseInt("99A2");
-		if ( strcmp("WSB", call) == 0 )
-			picode = parseInt("99A3");
-		if ( strcmp("WSM", call) == 0 )
-			picode = parseInt("99A4");
-		if ( strcmp("WWJ", call) == 0 )
-			picode = parseInt("9988");
-		if ( strcmp("WWL", call) == 0 )
-			picode = parseInt("9989");
+			picode = parseInt("0x99A5");
+		else if ( strcmp("KCY", call) == 0 )
+			picode = parseInt("0x99A6");
+		else if ( strcmp("KDB", call) == 0 )
+			picode = parseInt("0x9990");
+		else if ( strcmp("KDF", call) == 0 )
+			picode = parseInt("0x99A7");
+		else if ( strcmp("KEX", call) == 0 )
+			picode = parseInt("0x9950");
+		else if ( strcmp("KFH", call) == 0 )
+			picode = parseInt("0x9951");
+		else if ( strcmp("KFI", call) == 0 )
+			picode = parseInt("0x9952");
+		else if ( strcmp("KGA", call) == 0 )
+			picode = parseInt("0x9953");
+		else if ( strcmp("KGB", call) == 0 )
+			picode = parseInt("0x9991");
+		else if ( strcmp("KGO", call) == 0 )
+			picode = parseInt("0x9954");
+		else if ( strcmp("KGU", call) == 0 )
+			picode = parseInt("0x9955");
+		else if ( strcmp("KGW", call) == 0 )
+			picode = parseInt("0x9956");
+		else if ( strcmp("KGY", call) == 0 )
+			picode = parseInt("0x9957");
+		else if ( strcmp("KHQ", call) == 0 )
+			picode = parseInt("0x99AA");
+		else if ( strcmp("KID", call) == 0 )
+			picode = parseInt("0x9958");
+		else if ( strcmp("KIT", call) == 0 )
+			picode = parseInt("0x9959");
+		else if ( strcmp("KJR", call) == 0 )
+			picode = parseInt("0x995A");
+		else if ( strcmp("KLO", call) == 0 )
+			picode = parseInt("0x995B");
+		else if ( strcmp("KLZ", call) == 0 )
+			picode = parseInt("0x995C");
+		else if ( strcmp("KMA", call) == 0 )
+			picode = parseInt("0x995D");
+		else if ( strcmp("KMJ", call) == 0 )
+			picode = parseInt("0x995E");
+		else if ( strcmp("KNX", call) == 0 )
+			picode = parseInt("0x995F");
+		else if ( strcmp("KOA", call) == 0 )
+			picode = parseInt("0x9960");
+		else if ( strcmp("KOB", call) == 0 )
+			picode = parseInt("0x99AB");
+		else if ( strcmp("KOY", call) == 0 )
+			picode = parseInt("0x9992");
+		else if ( strcmp("KPQ", call) == 0 )
+			picode = parseInt("0x9993");
+		else if ( strcmp("KQV", call) == 0 )
+			picode = parseInt("0x9964");
+		else if ( strcmp("KSD", call) == 0 )
+			picode = parseInt("0x9994");
+		else if ( strcmp("KSL", call) == 0 )
+			picode = parseInt("0x9965");
+		else if ( strcmp("KUJ", call) == 0 )
+			picode = parseInt("0x9966");
+		else if ( strcmp("KUT", call) == 0 )
+			picode = parseInt("0x9995");
+		else if ( strcmp("KVI", call) == 0 )
+			picode = parseInt("0x9967");
+		else if ( strcmp("KWG", call) == 0 )
+			picode = parseInt("0x9968");
+		else if ( strcmp("KXL", call) == 0 )
+			picode = parseInt("0x9996");
+		else if ( strcmp("KXO", call) == 0 )
+			picode = parseInt("0x9997");
+		else if ( strcmp("KYW", call) == 0 )
+			picode = parseInt("0x996B");
+		else if ( strcmp("WBT", call) == 0 )
+			picode = parseInt("0x9999");
+		else if ( strcmp("WBZ", call) == 0 )
+			picode = parseInt("0x996D");
+		else if ( strcmp("WDZ", call) == 0 )
+			picode = parseInt("0x996E");
+		else if ( strcmp("WEW", call) == 0 )
+			picode = parseInt("0x996F");
+		else if ( strcmp("WGH", call) == 0 )
+			picode = parseInt("0x999A");
+		else if ( strcmp("WGL", call) == 0 )
+			picode = parseInt("0x9971");
+		else if ( strcmp("WGN", call) == 0 )
+			picode = parseInt("0x9972");
+		else if ( strcmp("WGR", call) == 0 )
+			picode = parseInt("0x9973");
+		else if ( strcmp("WGY", call) == 0 )
+			picode = parseInt("0x999B");
+		else if ( strcmp("WHA", call) == 0 )
+			picode = parseInt("0x9975");
+		else if ( strcmp("WHB", call) == 0 )
+			picode = parseInt("0x9976");
+		else if ( strcmp("WHK", call) == 0 )
+			picode = parseInt("0x9977");
+		else if ( strcmp("WHO", call) == 0 )
+			picode = parseInt("0x9978");
+		else if ( strcmp("WHP", call) == 0 )
+			picode = parseInt("0x999C");
+		else if ( strcmp("WIL", call) == 0 )
+			picode = parseInt("0x999D");
+		else if ( strcmp("WIP", call) == 0 )
+			picode = parseInt("0x997A");
+		else if ( strcmp("WIS", call) == 0 )
+			picode = parseInt("0x99B3");
+		else if ( strcmp("WJR", call) == 0 )
+			picode = parseInt("0x997B");
+		else if ( strcmp("WJW", call) == 0 )
+			picode = parseInt("0x99B4");
+		else if ( strcmp("WJZ", call) == 0 )
+			picode = parseInt("0x99B5");
+		else if ( strcmp("WKY", call) == 0 )
+			picode = parseInt("0x997C");
+		else if ( strcmp("WLS", call) == 0 )
+			picode = parseInt("0x997D");
+		else if ( strcmp("WLW", call) == 0 )
+			picode = parseInt("0x997E");
+		else if ( strcmp("WMC", call) == 0 )
+			picode = parseInt("0x999E");
+		else if ( strcmp("WMT", call) == 0 )
+			picode = parseInt("0x999F");
+		else if ( strcmp("WOC", call) == 0 )
+			picode = parseInt("0x9981");
+		else if ( strcmp("WOI", call) == 0 )
+			picode = parseInt("0x99A0");
+		else if ( strcmp("WOL", call) == 0 )
+			picode = parseInt("0x9983");
+		else if ( strcmp("WOR", call) == 0 )
+			picode = parseInt("0x9984");
+		else if ( strcmp("WOW", call) == 0 )
+			picode = parseInt("0x99A1");
+		else if ( strcmp("WRC", call) == 0 )
+			picode = parseInt("0x99B9");
+		else if ( strcmp("WRR", call) == 0 )
+			picode = parseInt("0x99A2");
+		else if ( strcmp("WSB", call) == 0 )
+			picode = parseInt("0x99A3");
+		else if ( strcmp("WSM", call) == 0 )
+			picode = parseInt("0x99A4");
+		else if ( strcmp("WWJ", call) == 0 )
+			picode = parseInt("0x9988");
+		else if ( strcmp("WWL", call) == 0 )
+			picode = parseInt("0x9989");
 	}
 
 	return picode;
@@ -310,6 +312,7 @@ int main(int argc, char *argv[])
 			{"no-transmit",			no_argument,		0, 'n'},
 			{"tune-frequency",		required_argument,	0, 'f'},
 			{"rds-station",			required_argument,	0, 's'},
+			{"rds-pi",			required_argument,	0, 'I'},
 			{"rds-text",			required_argument,	0, 'R'},
 			{"title",				required_argument,	0, 'T'},
 			{"artist",				required_argument,	0, 'A'},
@@ -331,10 +334,12 @@ int main(int argc, char *argv[])
 			{"reset",				no_argument,		0,  5 },
 			{"verbose",				no_argument,		0, 'v'},
 			{"help",				no_argument,		0, 'h'},
+			{"rds-repeat",			required_argument,	0,	7},
+			{"rds-mix",			required_argument,	0,	8},
 			{0,						0,					0,  0 }
 		};
 
-		c = getopt_long(argc, argv, "tnf:s:R:T:A:p:i:a:e:PD:F:SMd:vh",
+		c = getopt_long(argc, argv, "tnf:s:R:T:A:p:i:a:e:PD:F:SMd:vhI:",
 		long_options, &option_index);
 		if (c == -1)
 			break;
@@ -368,7 +373,19 @@ int main(int argc, char *argv[])
 				logwrite(LOG_INFO, "Set tune frequency to %f", strtod(optarg, NULL));
 				break;
 			}
-			case 's': // rds-station
+			case 7: /* repeat */
+			{
+				VastPsMessage& psm = VastPsMessage::get();
+				psm.mRdsRepeat = atoi(optarg);
+				break;
+			}
+			case 8: /* mix */
+			{
+				VastPsMessage& psm = VastPsMessage::get();
+				psm.mRdsMix = atoi(optarg);
+				break;
+			}
+			case 'I': // rds-ps
 			{
 				VastPsMessage& psm = VastPsMessage::get();
 				std::string psmessage = optarg;
@@ -376,7 +393,10 @@ int main(int argc, char *argv[])
 				add_to(commands, psm);
 
 				logwrite(LOG_INFO, "Set Station to %s", optarg);
-
+				break;
+			}
+			case 's': // rds-station - for the rds pi
+			{
 				VastRdsPI& rdspi = VastRdsPI::get();
 				rdspi = call_to_pi(optarg);
 				add_to(commands, rdspi);

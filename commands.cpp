@@ -685,6 +685,12 @@ bool VastRDSRtText::saveParametersToVast()
 		return false;
 	}
 
+	/* let's dump some debug data */
+	fmtxEEPROMReadConfig();
+	char msg[80];
+	fmtxRDSGetRtMessage(msg);
+	logwrite(LOG_ERROR, "rtMessage: %s", msg);
+
 	FMTX_MODE_ENUM ret = FMTX_MODE_OK;
 
 	if ( mRtMessage.length() )
@@ -715,7 +721,7 @@ bool VastRDSRtText::saveParametersToVast()
 			artist_len = mArtist.length();
 
 			artist_pos = 0;
-			title_pos = title_len + 3;
+			title_pos = artist_len + 3;
 
 			rtMessage = mArtist + " - " + mTitle;
 		}
@@ -751,6 +757,8 @@ bool VastRDSRtText::saveParametersToVast()
 			exit(EXIT_FAILURE);
 		}
 	}
+	fmtxRDSGetRtMessage(msg);
+	logwrite(LOG_ERROR, "rtMessage: %s", msg);
 
 	return true;
 }
@@ -814,13 +822,35 @@ char *convert(const string & s)
 
 bool VastPsMessage::saveParametersToVast()
 {
+	int loops;
+
 	if ( !mInitialized )
 	{
 		cerr << "Uninitialized!\n";
 		return false;
 	}
 
+	/* let's dump some debug data */
+	uint8_t mixId = fmtxRDSGetPsMixId();
+	uint8_t psMiscFlags = fmtxRDSGetPsMiscFlags();
+	uint8_t repeatCount = fmtxRDSGetPsRepeatCount();
+	uint8_t messageCount = fmtxRDSGetPsMessageCount();
+	logwrite(LOG_ERROR, "mix: %d, flags: %d, repeat: %d, messages: %d", mixId, psMiscFlags, repeatCount, messageCount);
+
 	FMTX_MODE_ENUM ret = FMTX_MODE_OK;
+
+	/* calculate how many lines we need */
+	size_t len = mPsMessage.size();
+	if (len < 8) {
+		mRdsLineId = 0;
+		loops=1;
+	} else {
+		mRdsLineId = len / 8;
+		if (len % 8 > 0) {
+			mRdsLineId++;
+		}
+		loops = mRdsLineId;
+	}
 
 	ret = (FMTX_MODE_ENUM) fmtxRDSSetPsMessageCount(mRdsLineId);
 	if (ret != FMTX_MODE_OK)
@@ -828,30 +858,40 @@ bool VastPsMessage::saveParametersToVast()
 		logwrite(LOG_ERROR, "Can't set RDS PS Number");
 		exit(EXIT_FAILURE);
 	}
+	logwrite(LOG_ERROR, "set numlines to %d", mRdsLineId);
 
-	if ( mPsMessage.size() )
-	{
-		/*
-		transform(vs.begin(), vs.end(), back_inserter(vc), convert);
+	for(int x=0;x<loops;x++) {
+		char *ptr = const_cast<char*>(mPsMessage.c_str());
+		ptr += x*8;
 
-		ret = (FMTX_MODE_ENUM) fmtxRDSSetPsMessageById(mRdsLineId,
-				mRdsLineText[settings.rdsLineId]);
-		*/
-
-		ret = (FMTX_MODE_ENUM) fmtxRDSSetPsMessageById(mRdsLineId,
-				const_cast<char*>(mPsMessage.c_str()));
-
-		/*
-		for ( size_t i = 0 ; i < vc.size() ; i++ )
-			delete [] vc[i];
-		*/
-
-		if (ret != FMTX_MODE_OK)
-		{
-			logwrite(LOG_ERROR, "Can't set RDS PS Message");
+		ret = (FMTX_MODE_ENUM) fmtxRDSSetPsMessageById(x, ptr);
+		if (ret != FMTX_MODE_OK) {
+			logwrite(LOG_ERROR, "can't set message %d to %s", x, ptr);
 			exit(EXIT_FAILURE);
 		}
+		logwrite(LOG_ERROR, "set message %d to %s", x, ptr);
 	}
+
+	if (mRdsLineId > 0) {
+		ret = (FMTX_MODE_ENUM) fmtxRDSSetPsRepeatCount(mRdsRepeat);
+		if (ret != FMTX_MODE_OK) {
+			logwrite(LOG_ERROR, "can't set repeat count %d", mRdsRepeat);
+			exit(EXIT_FAILURE);
+		}
+		logwrite(LOG_ERROR, "set repeat count to %d", mRdsRepeat);
+		ret = (FMTX_MODE_ENUM) fmtxRDSSetPsMixId(mRdsMix);
+		if (ret != FMTX_MODE_OK) {
+			logwrite(LOG_ERROR, "can't set repeat mix %d", mRdsMix);
+			exit(EXIT_FAILURE);
+		}
+		logwrite(LOG_ERROR, "set mix to %d", mRdsMix);
+	}
+	/* let's dump some debug data */
+	mixId = fmtxRDSGetPsMixId();
+	psMiscFlags = fmtxRDSGetPsMiscFlags();
+	repeatCount = fmtxRDSGetPsRepeatCount();
+	messageCount = fmtxRDSGetPsMessageCount();
+	logwrite(LOG_ERROR, "mix: %d, flags: %d, repeat: %d, messages: %d", mixId, psMiscFlags, repeatCount, messageCount);
 }
 
 /*

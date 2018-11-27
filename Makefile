@@ -1,7 +1,7 @@
 CC ?= gcc
 CXX ?= g++
-CFLAGS = -I/usr/include/libusb-1.0
-CXXFLAGS = -std=c++11
+CFLAGS = -I/usr/include/libusb-1.0 -g -O0
+CXXFLAGS = -std=c++11 -g -O0
 
 TARGETS = radio
 

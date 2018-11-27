@@ -222,6 +222,8 @@ public:
 
 	void printParameters();
 	bool saveParametersToVast();
+	int mRdsMix = 50;
+	int mRdsRepeat = 10;
 
 private:
 	int mRdsLineId = 0;
