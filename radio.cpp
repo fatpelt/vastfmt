@@ -338,7 +338,7 @@ int main(int argc, char *argv[])
 			{"help",				no_argument,		0, 'h'},
 			{"rds-repeat",			required_argument,	0,	7},
 			{"rds-mix",			required_argument,	0,	8},
-			{"rds-pi",			required_argument,	0,	9},
+			{"rds-ps",			required_argument,	0,	9},
 			{0,						0,					0,  0 }
 		};
 
