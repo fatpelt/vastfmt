@@ -841,8 +841,8 @@ bool VastPsMessage::saveParametersToVast()
 
 	/* calculate how many lines we need */
 	size_t len = mPsMessage.size();
-	if (len < 8) {
-		mRdsLineId = 0;
+	if (len <= 8) {
+		mRdsLineId = 1;
 		loops=1;
 	} else {
 		mRdsLineId = len / 8;
@@ -872,7 +872,7 @@ bool VastPsMessage::saveParametersToVast()
 		logwrite(LOG_ERROR, "set message %d to %s", x, ptr);
 	}
 
-	if (mRdsLineId > 0) {
+	if (mRdsLineId > 1) {
 		ret = (FMTX_MODE_ENUM) fmtxRDSSetPsRepeatCount(mRdsRepeat);
 		if (ret != FMTX_MODE_OK) {
 			logwrite(LOG_ERROR, "can't set repeat count %d", mRdsRepeat);
